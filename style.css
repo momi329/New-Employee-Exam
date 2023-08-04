@@ -1,0 +1,89 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/* =================================================== */
+body{
+	max-width:1190px;
+    font-family: 'Noto Sans', sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+}
+.order-nav {
+   
+    height: 40px;
+    background-color: rgb(40, 40, 40);
+    color: white;
+    line-height: 40px;
+    border-radius: 5px;
+}
+.nav-grid{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 60px 115px 165px 60px 80px 60px 70px 100px 70px 110px;
+}
+.content-block{
+	min-height: 80px;
+	/* border: 1px black solid; */
+	border-radius: 5px;
+}
+nav>div , .content-block>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mobile-nav{
+    display: none;
+    @media screen and (max-width:768px) { 
+        display: block;
+      }
+}
+
+.blue{
+    color: rgb(2, 129, 233);
+}
+.red{
+    color: rgb(246, 0, 0);
+}
