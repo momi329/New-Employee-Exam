@@ -64,34 +64,26 @@ body{
 	display: flex;
 	text-wrap:nowrap;
 }
-
-
-.order-nav>div:nth-of-type(1),
-.order-nav>div:nth-of-type(2),
-.order-nav>div:nth-of-type(3),
-.order-nav>div:nth-of-type(11){
+.w-100{
 	width:100px ;
 }
-.order-nav>div:nth-of-type(4),
-.order-nav>div:nth-of-type(7),
-.order-nav>div:nth-of-type(9){
-	width:60px ;
+.w-60{
+	width: 60px;
 }
-.order-nav>div:nth-of-type(5){
-	width:115px ;
+.w-115{
+	width: 115px;
 }
-.order-nav>div:nth-of-type(6){
-	width:165px ;
+.w-165{
+	width: 165px;
 }
-.order-nav>div:nth-of-type(8){
-	width:80px ;
+.w-80{
+	width: 80px;
 }
-.order-nav>div:nth-of-type(10),
-.order-nav>div:nth-of-type(12){
-	width:70px ;
+.w-70{
+	width: 70px;
 }
-.order-nav>div:nth-of-type(13){
-	width:110px ;
+.w-110{
+	width: 110px;
 }
 
 .content-block{
@@ -110,38 +102,12 @@ content-block:hover{
 	box-shadow: none;
 }
 
-
-.content-block>div:nth-of-type(1),
-.content-block>div:nth-of-type(2),
-.content-block>div:nth-of-type(3),
-.content-block>div:nth-of-type(11){
-	width:100px ;
-}
-.content-block>div:nth-of-type(4),
-.content-block>div:nth-of-type(7),
-.content-block>div:nth-of-type(9){
-	width:60px ;
-}
-.content-block>div:nth-of-type(5){
-	width:115px ;
-}
-.content-block>div:nth-of-type(6){
-	width:165px ;
-}
-.content-block>div:nth-of-type(8){
-	width:80px ;
-}
-.content-block>div:nth-of-type(10),
-.content-block>div:nth-of-type(12){
-	width:70px ;
-}
-.content-block>div:nth-of-type(13){
-	width:110px ;
-}
-
-
 .order-content {
 	text-align: center;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
 }
 nav>div , .content-block>div{
 	display: flex;
@@ -175,11 +141,12 @@ nav>div , .content-block>div{
 	align-items: center;
 	font-size: 8px;
 	letter-spacing: -1px;
-	line-height:12px;
+	text-wrap:nowrap;
 }
 .dotted-button{
 	border-bottom: 1px rgb(193, 193, 193) dashed;
 	cursor: pointer;
+	inline-size: fit-content
 }
 .red-button{
 	border:  rgb(246, 0, 0) 1px solid;
@@ -214,7 +181,10 @@ nav>div , .content-block>div{
 	height: 12px;
 }
 @media screen and (max-width:960px) {
-	.content-block>div:nth-of-type(13) {
+	.w-60,.w-70,.w-80,.w-100,.w-115{
+		width: 45%;
+	}
+	.w-165,.w-110{
 		width: 100%;
 	}
 	.content-block{
@@ -229,10 +199,10 @@ nav>div , .content-block>div{
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
+		align-items: start;
 	}
 	#inline-flex-item{
 		display: inline-flex;
-		min-width: 150px;
 	}
 
 	.nav-grid {
@@ -250,10 +220,15 @@ nav>div , .content-block>div{
 		margin-right: 10px;
 		justify-content: flex-end;
 	}
-	.order-content, .content-block>div>p{
-		min-width: fit-content;
-		text-align: left;
+	.order-content{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
+	/* .order-content, .content-block>div>p{
+		
+		text-align: left;
+	} */
 	.content-block > div:last-of-type{
 		display: flex;
 		
@@ -285,4 +260,7 @@ nav>div , .content-block>div{
 		min-width: fit-content;
 		text-wrap:nowrap;
 	}
+	.custom-content::before {
+		content: " /";
+	  }
 }
