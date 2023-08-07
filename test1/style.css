@@ -214,7 +214,9 @@ nav>div , .content-block>div{
 	height: 12px;
 }
 @media screen and (max-width:960px) {
-	
+	.content-block>div:nth-of-type(13) {
+		width: 100%;
+	}
 	.content-block{
 	box-shadow: 0px 0px 8px rgb(193, 193, 193);
 	margin: 10px;
@@ -222,7 +224,6 @@ nav>div , .content-block>div{
 	border-radius: 5px;
 	display: block;
 	flex-direction: column;
-
 	}
 	.content-block > div {
 		display: flex;
@@ -260,10 +261,13 @@ nav>div , .content-block>div{
 		align-items: flex-start;
 	}
 	#pay-off{
-		flex-direction: column;
+		display: inline-flex;
+		width: 150px;
+		flex-direction: row;
 		display: inline-flex;
 		min-width: 45%;
 		align-items: center;
+
 	}
 	.button-wrapper{
 		display: flex;
