@@ -1,9 +1,10 @@
-
-import './App.css';
+import "./App.scss";
+import Chooser from "./Chooser/Chooser";
 
 function App() {
   return (
-    <div>hello world
+    <div>
+      <Chooser />
     </div>
   );
 }

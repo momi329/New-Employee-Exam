@@ -1,0 +1,102 @@
+
+.chooser{
+    cursor: auto;
+    margin: 20px auto;
+    width: 90%;
+    min-height: 100px;
+    border: 1px solid pink;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+   
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+
+}
+.flexWrap{
+    flex-wrap: wrap;
+}
+.alignCenter{
+    align-items: center;
+}
+.title{
+    margin-top:8px;
+    margin-right:20px;
+    min-width:80px ;
+    text-align: right;
+}
+.hidden{
+    overflow: hidden;
+    height: 38px;
+}
+.tag{
+    margin: 4px;
+    color: gray;
+    padding: 4px 12px;
+    border: 1px gray solid;
+    border-radius: 15px;
+    text-wrap:nowrap;
+    cursor: pointer;
+    &:hover{
+        color:white;
+        background: #db4343;
+        border: #db4343 1px solid;
+    }
+}
+.choosenTag{
+    cursor: pointer;
+    margin: 4px;
+    color: gray;
+    padding: 4px 12px;
+    border: 1px gray solid;
+    border-radius: 15px;
+    text-wrap:nowrap;
+    color:white;
+    background: #db4343;
+    border: #db4343 1px solid;
+}
+.icon path{
+    fill: gray;
+}
+.tag:hover .icon path,.tag:hover .icon use{
+    fill: white;
+}
+
+.iconChoosen path{
+    fill:white
+}
+.handleOption{
+    margin: 1px;
+    text-wrap:nowrap;
+    cursor: pointer;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.line{
+    color: gray;
+    width:fit-content;
+    margin: -3px 14px 0 0;
+}
+.more{
+    color: rgb(97, 160, 255);
+    width:fit-content;
+    margin:1px 0px;
+
+}
+.iconMore{
+    width: 12px;
+    height: 12px;
+    margin-left: 3px;
+}
+.rotate{
+    transform: rotate(180deg)
+}
