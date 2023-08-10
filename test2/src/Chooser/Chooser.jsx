@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import CategoryList from "../CategoryList";
-import Ship from "./Ship";
-import Bus from "./Bus";
-import Railway from "./Railway";
 import "./style.scss";
 import OpenButton from "./OpenButton";
+import Tag from "./Tag";
 const TripTypeList = [
   {
     TypeName: "郵輪",
@@ -86,9 +84,39 @@ function Chooser() {
       setShowButton(newShowButton);
     }
   }
+
   useEffect(() => {
     ifOverflow();
   }, [choosenData]);
+
+  function handleClickTraffic(index) {
+    const newData = { ...choosenData };
+    if (choosenData.traffic[index].choosen) {
+      newData.trafficformat.forEach((item) => (item.choosen = false));
+    }
+    newData.traffic[index].choosen = !newData.traffic[index].choosen;
+    setChoosenData(newData);
+  }
+
+  function handleClickTrafficformat(index) {
+    const newData = { ...choosenData };
+    newData.trafficformat[index].choosen =
+      !newData.trafficformat[index].choosen;
+    setChoosenData(newData);
+  }
+
+  function handleClickProductformat(index) {
+    const newData = { ...choosenData };
+    newData.productFormat[index].choosen =
+      !newData.productFormat[index].choosen;
+    setChoosenData(newData);
+  }
+
+  function handleClickMarcketing(index) {
+    const newData = { ...choosenData };
+    newData.marcketing[index].choosen = !newData.marcketing[index].choosen;
+    setChoosenData(newData);
+  }
 
   return (
     <section className="chooser">
@@ -96,38 +124,12 @@ function Chooser() {
         <div className="title">遊玩交通</div>
         <div className="flexRow listItem ">
           {choosenData.traffic.map((listItem, listItemIndex) => (
-            <div
-              className={
-                listItem.choosen
-                  ? "choosenTag flexRow alignCenter"
-                  : "flexRow alignCenter tag"
-              }
+            <Tag
               key={`traffic${listItem.TypeCode}`}
-              onClick={() => {
-                const newData = { ...choosenData };
-                if (choosenData.traffic[listItemIndex].choosen) {
-                  newData.trafficformat.forEach(
-                    (item) => (item.choosen = false)
-                  );
-                }
-                newData.traffic[listItemIndex].choosen =
-                  !newData.traffic[listItemIndex].choosen;
-                setChoosenData(newData);
-              }}
-            >
-              {(listItem.img && listItem.TypeCode === "02" && (
-                <Bus className={listItem.choosen ? "iconChoosen" : "icon"} />
-              )) ||
-                (listItem.img && listItem.TypeCode === "01" && (
-                  <Ship className={listItem.choosen ? "iconChoosen" : "icon"} />
-                )) ||
-                (listItem.img && listItem.TypeCode === "03" && (
-                  <Railway
-                    className={listItem.choosen ? "iconChoosen" : "icon"}
-                  />
-                ))}
-              {listItem.TypeName}
-            </div>
+              listItem={listItem}
+              type={"traffic"}
+              handleOnClick={() => handleClickTraffic(listItemIndex)}
+            />
           ))}
         </div>
         {showButton[0] && (
@@ -154,18 +156,14 @@ function Chooser() {
                 (item) =>
                   item.choosen &&
                   item.TypeCode === listItem.TripTypeCode && (
-                    <div
-                      className={listItem.choosen ? "choosenTag" : "tag"}
+                    <Tag
                       key={`trafficformat${listItem.TypeCode}`}
-                      onClick={() => {
-                        const newData = { ...choosenData };
-                        newData.trafficformat[listItemIndex].choosen =
-                          !newData.trafficformat[listItemIndex].choosen;
-                        setChoosenData(newData);
-                      }}
-                    >
-                      {listItem.TagName}
-                    </div>
+                      listItem={listItem}
+                      type={"trafficformat"}
+                      handleOnClick={() =>
+                        handleClickTrafficformat(listItemIndex)
+                      }
+                    />
                   )
               )
             )}
@@ -187,18 +185,12 @@ function Chooser() {
           }
         >
           {choosenData.productFormat.map((listItem, listItemIndex) => (
-            <div
-              className={listItem.choosen ? "choosenTag" : "tag"}
+            <Tag
               key={`product${listItem.TagNo}`}
-              onClick={() => {
-                const newData = { ...choosenData };
-                newData.productFormat[listItemIndex].choosen =
-                  !newData.productFormat[listItemIndex].choosen;
-                setChoosenData(newData);
-              }}
-            >
-              {listItem.TagName}
-            </div>
+              listItem={listItem}
+              type={"productformat"}
+              handleOnClick={() => handleClickProductformat(listItemIndex)}
+            />
           ))}
         </div>
         {showButton[2] && (
@@ -209,18 +201,12 @@ function Chooser() {
         <div className="title">行銷活動</div>
         <div ref={marketingContainer} className="flexRow listItem flexWrap ">
           {choosenData.marcketing.map((listItem, listItemIndex) => (
-            <div
-              className={listItem.choosen ? "choosenTag" : "tag"}
+            <Tag
               key={`marcketing-${listItem.TagNo}`}
-              onClick={() => {
-                const newData = { ...choosenData };
-                newData.marcketing[listItemIndex].choosen =
-                  !newData.marcketing[listItemIndex].choosen;
-                setChoosenData(newData);
-              }}
-            >
-              {listItem.TagName}
-            </div>
+              listItem={listItem}
+              type={"marcketing"}
+              handleOnClick={() => handleClickMarcketing(listItemIndex)}
+            />
           ))}
         </div>
         {showButton[3] && (
