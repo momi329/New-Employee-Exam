@@ -1,0 +1,174 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+body {
+  line-height: 1;
+  color: black;
+  background: white;
+}
+ol,
+ul {
+  list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+}
+blockquote,
+q {
+  quotes: "" "";
+}
+
+/* =================================================== */
+body {
+  max-width: 1190px;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2rem;
+  cursor: default;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+.table {
+  display: flex;
+  flex-direction: column;
+}
+.nav-title {
+  display: flex;
+  gap: 3px;
+  margin: 4px 0 4px 4px;
+}
+nav {
+  height: 25px;
+  border: 1px gray solid;
+  display: flex;
+  align-items: center;
+  background-color: rgb(224, 224, 224);
+}
+.alignCenter {
+  align-items: center;
+}
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+.box-container {
+  position: relative;
+  min-width: 100px;
+  flex-grow: 1;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px gray solid;
+}
+.gray {
+  color: gray;
+}
+.date {
+  color: gray;
+  padding: 4px 0;
+}
+.small {
+  font-size: 8px;
+  margin-left: 3px;
+}
+.right-button {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  background-color: black;
+  opacity: 0.3;
+}
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: white;
+}

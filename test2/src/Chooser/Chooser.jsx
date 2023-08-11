@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import CategoryList from "../CategoryList";
 import "./style.scss";
+import Ship from "./Ship";
+import Bus from "./Bus";
+import Railway from "./Railway";
 import OpenButton from "./OpenButton";
 import Tag from "./Tag";
 const TripTypeList = [
@@ -30,7 +33,6 @@ const TripTypeList = [
 ];
 function productListMaker(index) {
   const productListArr = [];
-  const list = [];
   CategoryList[index].TypeList.forEach((type) => {
     type.GroupList.forEach((tagList) => {
       tagList.TagList.forEach((item) =>
@@ -42,9 +44,6 @@ function productListMaker(index) {
       );
     });
   });
-  list.forEach((tag) => {
-    productListArr.push(...tag.TagList);
-  });
   return productListArr;
 }
 const productList = productListMaker(0);
@@ -53,55 +52,112 @@ const trafficList = productListMaker(2);
 
 function Chooser() {
   const trafficContainer = useRef(null);
+  const trafficContainer01 = useRef(null);
+  const trafficContainer03 = useRef(null);
+
   const productContainer = useRef(null);
   const marketingContainer = useRef(null);
 
   const [showButton, setShowButton] = useState([]);
-  const [toggle, setToggle] = useState([null, true, true, null]);
+  const [toggle, setToggle] = useState([true, true, true, true, true]);
   const [choosenData, setChoosenData] = useState({
     traffic: TripTypeList,
     trafficformat: trafficList,
     productFormat: productList,
     marcketing: marketingList,
   });
+  const [MEDIA, setMEDIA] = useState(window.innerWidth);
   function ifOverflow() {
-    const trafficRef = trafficContainer.current;
+    const trafficContainerRef = trafficContainer.current;
+    const trafficRef01 = trafficContainer01.current;
+    const trafficRef03 = trafficContainer03.current;
     const productRef = productContainer.current;
     const marketingRef = marketingContainer.current;
     if (showButton.length === 0) {
       const newShowButton = [
-        null,
-        trafficRef ? trafficRef.scrollHeight > trafficRef.clientHeight : null,
+        trafficContainerRef
+          ? trafficContainerRef.scrollHeight > trafficContainerRef.clientHeight
+          : null,
+        trafficRef01
+          ? trafficRef01.scrollHeight > trafficRef01.clientHeight
+          : null,
+        trafficRef03
+          ? trafficRef03.scrollHeight > trafficRef03.clientHeight
+          : null,
         productRef.scrollHeight > productRef.clientHeight,
         marketingRef.scrollHeight > marketingRef.clientHeight,
       ];
+
       setShowButton(newShowButton);
     } else {
       const newShowButton = [...showButton];
-      newShowButton[1] = trafficRef
-        ? trafficRef.scrollHeight > trafficRef.clientHeight
+      newShowButton[0] = trafficContainerRef
+        ? trafficContainerRef.scrollHeight >
+          trafficContainerRef.clientHeight + 1
         : null;
+      newShowButton[1] = trafficRef01
+        ? trafficRef01.scrollHeight > trafficRef01.clientHeight
+        : null;
+      newShowButton[2] = trafficRef03
+        ? trafficRef03.scrollHeight > trafficRef03.clientHeight
+        : null;
+      newShowButton[4] = marketingRef.scrollHeight > marketingRef.clientHeight;
       setShowButton(newShowButton);
     }
   }
+  function debounce(func, delay = 200) {
+    let timer = null;
+    return function (...args) {
+      let context = this;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth === MEDIA) return;
+      setMEDIA(window.innerWidth);
+    };
+    window.addEventListener("resize", debounce(handleResize));
+    return () => {
+      window.removeEventListener("resize", debounce(handleResize));
+    };
+  }, [MEDIA]);
 
   useEffect(() => {
     ifOverflow();
-  }, [choosenData]);
+  }, [choosenData, MEDIA]);
 
   function handleClickTraffic(index) {
     const newData = { ...choosenData };
     if (choosenData.traffic[index].choosen) {
-      newData.trafficformat.forEach((item) => (item.choosen = false));
+      newData.trafficformat
+        .filter(
+          (item) => item.TripTypeCode === choosenData.traffic[index].TypeCode
+        )
+        .forEach((item) => (item.choosen = false));
     }
     newData.traffic[index].choosen = !newData.traffic[index].choosen;
     setChoosenData(newData);
   }
 
-  function handleClickTrafficformat(index) {
+  function handleClickTrafficformat01(index) {
     const newData = { ...choosenData };
-    newData.trafficformat[index].choosen =
-      !newData.trafficformat[index].choosen;
+    const shipData = newData.trafficformat.filter(
+      (item) => item.TripTypeCode === "01"
+    );
+    shipData[index].choosen = !shipData[index].choosen;
+    setChoosenData(newData);
+  }
+  function handleClickTrafficformat03(index) {
+    const newData = { ...choosenData };
+    const RailwayData = newData.trafficformat.filter(
+      (item) => item.TripTypeCode === "03"
+    );
+    RailwayData[index].choosen = !RailwayData[index].choosen;
+
     setChoosenData(newData);
   }
 
@@ -122,7 +178,14 @@ function Chooser() {
     <section className="chooser">
       <div className="flexRow">
         <div className="title">遊玩交通</div>
-        <div className="flexRow listItem ">
+        <div
+          ref={trafficContainer}
+          className={
+            toggle[0]
+              ? "flexRow listItem flexWrap hidden "
+              : "flexRow listItem flexWrap "
+          }
+        >
           {choosenData.traffic.map((listItem, listItemIndex) => (
             <Tag
               key={`traffic${listItem.TypeCode}`}
@@ -137,39 +200,76 @@ function Chooser() {
         )}
       </div>
       {choosenData.traffic.some(
-        (tripType) =>
-          (tripType.TypeCode === "01" && tripType.choosen) ||
-          (tripType.TypeCode === "03" && tripType.choosen)
+        (tripType) => tripType.TypeCode === "01" && tripType.choosen
       ) && (
         <div className="flexRow">
-          <div className="title">鐵道規格</div>
+          <div className="title">郵輪規格</div>
           <div
-            ref={trafficContainer}
+            ref={trafficContainer01}
             className={
               toggle[1]
                 ? "flexRow listItem flexWrap hidden "
                 : "flexRow listItem flexWrap "
             }
           >
-            {choosenData.trafficformat.map((listItem, listItemIndex) =>
-              choosenData.traffic.map(
-                (item) =>
-                  item.choosen &&
-                  item.TypeCode === listItem.TripTypeCode && (
-                    <Tag
-                      key={`trafficformat${listItem.TypeCode}`}
-                      listItem={listItem}
-                      type={"trafficformat"}
-                      handleOnClick={() =>
-                        handleClickTrafficformat(listItemIndex)
-                      }
-                    />
-                  )
-              )
-            )}
+            {choosenData.trafficformat
+              .filter((listItem) => listItem.TripTypeCode === "01")
+              .map((listItem, listItemIndex) =>
+                choosenData.traffic.map(
+                  (item) =>
+                    item.choosen &&
+                    item.TypeCode === listItem.TripTypeCode && (
+                      <Tag
+                        key={`trafficformat${listItem.TypeCode}`}
+                        listItem={listItem}
+                        type={"trafficformat"}
+                        handleOnClick={() =>
+                          handleClickTrafficformat01(listItemIndex)
+                        }
+                      />
+                    )
+                )
+              )}
           </div>
           {showButton[1] && (
             <OpenButton toggle={toggle} setToggle={setToggle} index={1} />
+          )}
+        </div>
+      )}
+      {choosenData.traffic.some(
+        (tripType) => tripType.TypeCode === "03" && tripType.choosen
+      ) && (
+        <div className="flexRow">
+          <div className="title">鐵道規格</div>
+          <div
+            ref={trafficContainer03}
+            className={
+              toggle[2]
+                ? "flexRow listItem flexWrap hidden "
+                : "flexRow listItem flexWrap "
+            }
+          >
+            {choosenData.trafficformat
+              .filter((listItem) => listItem.TripTypeCode === "03")
+              .map((listItem, listItemIndex) =>
+                choosenData.traffic.map(
+                  (item) =>
+                    item.choosen &&
+                    item.TypeCode === listItem.TripTypeCode && (
+                      <Tag
+                        key={`trafficformat${listItem.TypeCode}`}
+                        listItem={listItem}
+                        type={"trafficformat"}
+                        handleOnClick={() =>
+                          handleClickTrafficformat03(listItemIndex)
+                        }
+                      />
+                    )
+                )
+              )}
+          </div>
+          {showButton[2] && (
+            <OpenButton toggle={toggle} setToggle={setToggle} index={2} />
           )}
         </div>
       )}
@@ -179,7 +279,7 @@ function Chooser() {
         <div
           ref={productContainer}
           className={
-            toggle[2]
+            toggle[3]
               ? "flexRow listItem flexWrap hidden "
               : "flexRow listItem flexWrap "
           }
@@ -193,13 +293,20 @@ function Chooser() {
             />
           ))}
         </div>
-        {showButton[2] && (
-          <OpenButton toggle={toggle} setToggle={setToggle} index={2} />
+        {showButton[3] && (
+          <OpenButton toggle={toggle} setToggle={setToggle} index={3} />
         )}
       </div>
       <div className="flexRow">
         <div className="title">行銷活動</div>
-        <div ref={marketingContainer} className="flexRow listItem flexWrap ">
+        <div
+          ref={marketingContainer}
+          className={
+            toggle[4]
+              ? "flexRow listItem flexWrap hidden "
+              : "flexRow listItem flexWrap "
+          }
+        >
           {choosenData.marcketing.map((listItem, listItemIndex) => (
             <Tag
               key={`marcketing-${listItem.TagNo}`}
@@ -209,8 +316,8 @@ function Chooser() {
             />
           ))}
         </div>
-        {showButton[3] && (
-          <OpenButton toggle={toggle} setToggle={setToggle} index={3} />
+        {showButton[4] && (
+          <OpenButton toggle={toggle} setToggle={setToggle} index={4} />
         )}
       </div>
     </section>
