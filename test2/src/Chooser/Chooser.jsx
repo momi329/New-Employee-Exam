@@ -54,7 +54,6 @@ function Chooser() {
   const trafficContainer = useRef(null);
   const trafficContainer01 = useRef(null);
   const trafficContainer03 = useRef(null);
-
   const productContainer = useRef(null);
   const marketingContainer = useRef(null);
 
@@ -87,7 +86,6 @@ function Chooser() {
         productRef.scrollHeight > productRef.clientHeight,
         marketingRef.scrollHeight > marketingRef.clientHeight,
       ];
-
       setShowButton(newShowButton);
     } else {
       const newShowButton = [...showButton];
@@ -105,13 +103,12 @@ function Chooser() {
       setShowButton(newShowButton);
     }
   }
-  function debounce(func, delay = 200) {
+  function debounce(fun, delay = 200) {
     let timer = null;
     return function (...args) {
-      let context = this;
       clearTimeout(timer);
       timer = setTimeout(() => {
-        func.apply(context, args);
+        fun(...args);
       }, delay);
     };
   }
@@ -142,7 +139,6 @@ function Chooser() {
     newData.traffic[index].choosen = !newData.traffic[index].choosen;
     setChoosenData(newData);
   }
-
   function handleClickTrafficformat01(index) {
     const newData = { ...choosenData };
     const shipData = newData.trafficformat.filter(
@@ -167,7 +163,6 @@ function Chooser() {
       !newData.productFormat[index].choosen;
     setChoosenData(newData);
   }
-
   function handleClickMarcketing(index) {
     const newData = { ...choosenData };
     newData.marcketing[index].choosen = !newData.marcketing[index].choosen;
