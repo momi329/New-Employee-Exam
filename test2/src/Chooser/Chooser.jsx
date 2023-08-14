@@ -66,12 +66,14 @@ function Chooser() {
     marcketing: marketingList,
   });
   const [MEDIA, setMEDIA] = useState(window.innerWidth);
+  const LINE_HEIGHT = 36;
   function ifOverflow() {
     const trafficContainerRef = trafficContainer.current;
     const trafficRef01 = trafficContainer01.current;
     const trafficRef03 = trafficContainer03.current;
     const productRef = productContainer.current;
     const marketingRef = marketingContainer.current;
+
     if (showButton.length === 0) {
       const newShowButton = [
         trafficContainerRef
@@ -90,16 +92,20 @@ function Chooser() {
     } else {
       const newShowButton = [...showButton];
       newShowButton[0] = trafficContainerRef
-        ? trafficContainerRef.scrollHeight >
-          trafficContainerRef.clientHeight + 1
+        ? trafficContainerRef.scrollHeight > LINE_HEIGHT &&
+          trafficContainerRef.scrollHeight > trafficContainerRef.clientHeight
         : null;
       newShowButton[1] = trafficRef01
-        ? trafficRef01.scrollHeight > trafficRef01.clientHeight
+        ? trafficRef01.scrollHeight > LINE_HEIGHT &&
+          trafficRef01.scrollHeight > trafficRef01.clientHeight
         : null;
       newShowButton[2] = trafficRef03
-        ? trafficRef03.scrollHeight > trafficRef03.clientHeight
+        ? trafficRef03.scrollHeight > LINE_HEIGHT &&
+          trafficRef03.scrollHeight > trafficRef03.clientHeight
         : null;
-      newShowButton[4] = marketingRef.scrollHeight > marketingRef.clientHeight;
+      newShowButton[4] =
+        marketingRef.scrollHeight > LINE_HEIGHT &&
+        marketingRef.scrollHeight > marketingRef.clientHeight;
       setShowButton(newShowButton);
     }
   }
@@ -116,6 +122,7 @@ function Chooser() {
     const handleResize = () => {
       if (window.innerWidth === MEDIA) return;
       setMEDIA(window.innerWidth);
+      setToggle(Array(5).fill(true));
     };
     window.addEventListener("resize", debounce(handleResize));
     return () => {
