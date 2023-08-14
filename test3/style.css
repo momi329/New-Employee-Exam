@@ -103,33 +103,21 @@ q {
 
 /* =================================================== */
 body {
-  max-width: 1190px;
+  max-width: 1000px;
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.2rem;
   cursor: default;
   margin: 20px auto;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
-.table {
-  display: flex;
-  flex-direction: column;
-}
-.nav-title {
-  display: flex;
-  gap: 3px;
-  margin: 4px 0 4px 4px;
-}
-nav {
-  height: 25px;
-  border: 1px gray solid;
-  display: flex;
-  align-items: center;
-  background-color: rgb(224, 224, 224);
-}
+
 .alignCenter {
   align-items: center;
+}
+.justifyCenter {
+  justify-content: center;
 }
 .flexRow {
   display: flex;
@@ -139,36 +127,84 @@ nav {
   display: flex;
   flex-direction: column;
 }
-.box-container {
-  position: relative;
-  min-width: 100px;
+.grow {
   flex-grow: 1;
-  height: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px gray solid;
-}
-.gray {
-  color: gray;
-}
-.date {
-  color: gray;
-  padding: 4px 0;
 }
 .small {
   font-size: 8px;
-  margin-left: 3px;
+  color: gray;
+  margin-left: 4px;
 }
-.right-button {
-  position: absolute;
-  width: 30px;
+.form-row,
+.date-row {
+  width: 100px;
+  flex-grow: 1;
+}
+.item,
+.price {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   height: 50px;
-  background-color: black;
-  opacity: 0.3;
+  border: 1px rgb(195, 195, 195) solid;
+  line-height: 14px;
+  padding-top: 4px;
 }
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
-  color: white;
+.item {
+  color: gray;
+  background-color: rgba(141, 141, 141, 0.3);
+}
+.price {
+  cursor: pointer;
+  position: relative;
+}
+.lookMore {
+  color: gray;
+}
+.relative {
+  position: relative;
+}
+.year {
+  position: absolute;
+  top: 4px;
+  right: 16px;
+  font-size: 14px;
+  color: darkcyan;
+}
+.go {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+}
+.back {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+.clicked {
+  background-color: rgba(255, 162, 0, 0.1);
+  border: 1px tomato solid;
+}
+.cheapest ::before {
+  content: "最便宜";
+  position: absolute;
+  top: 4px;
+  left: 20px;
+  color: orange;
+  font-size: 14px;
+}
+.cheapest ::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 12px solid;
+  border-color: orange transparent transparent orange;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.background {
+  background-color: rgba(200, 200, 200, 0.2);
 }

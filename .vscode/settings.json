@@ -1,5 +1,5 @@
 {
-    "livePreview.defaultPreviewPath": "/index.html",
-    "editor.formatOnSave": true,
-    "editor.formatOnType": false
+  "livePreview.defaultPreviewPath": "/test3/index.html",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false
 }

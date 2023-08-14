@@ -11,61 +11,118 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&displ   ay=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <section class="table">
-      <nav>
-        <div>
-          <img src="./img/calendar.png" alt="calendar" />
-          低價月曆
+    <section class="default flexRow">
+      <div class="date-row flexCol">
+        <div class="item relative">
+          <div class="go">去程</div>
+          <div class="back">回程</div>
         </div>
-      </nav>
-      <div class="flexRow">
-        <div class="right-button">
-          <span class="material-symbols-outlined"> chevron_left </span>
+        <div class="item">12/27(三)</div>
+        <div class="item">12/28(四)</div>
+        <div class="item">12/29(五)</div>
+        <div class="item">12/30(六)</div>
+        <div class="item">12/31(日)</div>
+        <div class="item relative">
+          01/01(一)
+          <p class="year">2018</p>
         </div>
-        <div class="box-container">
-          <p class="date">12/28(四)</p>
-          <p>$15,568<span class="small gray">起</span></p>
-        </div>
-        <div class="box-container">
-          <p class="date">12/29(五)</p>
-          <p>$15,568<span class="small gray">起</span></p>
-        </div>
-        <div class="box-container">
-          <p class="date">12/28(四)</p>
-          <button>查看</button>
-        </div>
-        <div class="box-container">
-          <p class="date">12/31(日)</p>
-          <p>$15,568<span class="small gray">起</span></p>
-        </div>
-        <div class="box-container">
-          <p class="date">01/01(一)</p>
-          <p>$15,568<span class="small gray">起</span></p>
-        </div>
-        <div class="box-container">
-          <p class="date">01/01(一)</p>
-          <p>$15,568<span class="small gray">起</span></p>
-        </div>
+        <div class="item">01/02(二)</div>
+      </div>
 
-        <div class="box-container">
-          <p class="date">01/01(一)</p>
-          <p>$15,568<span class="small gray">起</span></p>
+      <div class="form-row flexCol">
+        <div class="item">12/30(六)</div>
+        <div class="price lookMore">- -</div>
+        <div class="price cheapest">$15,568 <span class="small">起</span></div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item">12/31(日)</div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item relative">
+          01/01(一)
+          <p class="year">2018</p>
         </div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item">01/02(二)</div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price cheapest">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price lookMore">查看</div>
+        <div class="price lookMore">查看</div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item">01/03(三)</div>
+        <div class="price cheapest">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price lookMore">查看</div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item">01/03(三)</div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price lookMore">查看</div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item">01/04(四)</div>
+        <div class="price cheapest">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+      </div>
+      <div class="form-row flexCol">
+        <div class="item">01/05(五)</div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
+        <div class="price">$15,568 <span class="small">起</span></div>
       </div>
     </section>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
-      src="https://code.jquery.com/jquery-1.12.4.min.js"
-      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
       crossorigin="anonymous"
     ></script>
-    <script src="dist/js/freeze-table.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
