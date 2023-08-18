@@ -14,11 +14,12 @@ $.fn.frzTable = function (arg) {
   return $(this)
     .children("span")
     .click(function () {
-      if ($(this).hasClass("right")) {
+      if ($(this).hasClass("right") || $(this).hasClass("rel-right")) {
         count += arg.count.slide;
       } else {
         count -= arg.count.slide;
       }
+
       arg.whenClick(count, this);
     });
 };

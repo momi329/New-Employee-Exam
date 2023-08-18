@@ -156,7 +156,6 @@ body {
 .form-rel-row {
   width: 133px;
   flex-shrink: 0;
-  flex-grow: 1;
 }
 .item,
 .price {
@@ -188,6 +187,9 @@ body {
 }
 .relative {
   position: relative;
+}
+.absolute {
+  position: absolute;
 }
 .year {
   position: absolute;

@@ -61,7 +61,7 @@ $(function () {
     }
   });
 
-  $(".frzTable").frzTable({
+  $(".frzTable.default").frzTable({
     count: {
       slide: 2,
       show: 4,
@@ -72,77 +72,35 @@ $(function () {
       let show = this.count.show;
       let speed = this.speed * 1000;
 
-      let biggestIndex = $(".frzTable")
+      let biggestIndex = $(".frzTable.default")
         .children(".flexRow")
         .children("div:last")
         .index();
-
       //按鈕顯示
 
       if (biggestIndex - (count + show - 2) <= 0) {
-        $(".frzTable").find(".stickyContainer.right").hide();
+        $(".frzTable.default").find(".stickyContainer.right").hide();
       } else {
-        $(".frzTable").find(".stickyContainer.right").show();
+        $(".frzTable.default").find(".stickyContainer.right").show();
       }
       if (count >= slide) {
-        $(".frzTable").find(".stickyContainer.left").show();
+        $(".frzTable.default").find(".stickyContainer.left").show();
       } else {
-        $(".frzTable").find(".stickyContainer.left").hide();
+        $(".frzTable.default").find(".stickyContainer.left").hide();
       }
-
-      $(".frzTable")
-        .children(".flexRow")
-        .children()
-        .each(function (index, item) {
-          if ($(target).hasClass("left")) {
-            $(".frzTable").addClass("justifyBetween");
-          } else {
-            $(".frzTable").removeClass("justifyBetween");
-          }
-          //appear
-          if (index >= count && index <= count + show - 2) {
-            if ($(target).hasClass("left") && count + (show - 2) !== index) {
-              console.log("!", index, item);
-              $(item)
-                // .css({ marginLeft: "-100px" })
-                .removeClass("disappear")
-                .addClass("appear");
-            } else {
-              $(item)
-                .css({ margin: 0 })
-                .removeClass("disappear")
-                .addClass("appear");
-            }
-          }
-          //小於(slide)
-          if (index < count) {
-            if (count - index <= slide) {
-              if ($(target).hasClass("right")) {
-                $(item)
-                  .css({ margin: "0", right: "0" })
-                  .animate({ marginLeft: "-100px" }, speed);
-                setTimeout(() => {
-                  $(item)
-                    .removeClass("appear")
-                    .addClass("disappear")
-                    .css({ margin: "0" });
-                }, 500);
-              }
-            } else {
-              //小於
-              $(item).removeClass("appear").addClass("disappear");
-            }
-          }
-          //大於(slide)
-          if (index > count + show - 2) {
-            if (count + show - 2 + slide >= index) {
-              $(item).removeClass("appear").addClass("disappear");
-            } else {
-              //大於消失
-              $(item).removeClass("appear").addClass("disappear");
-            }
-          }
-        });
+      let position;
+      if ($(target).hasClass("right")) {
+        position = `-=${100 * slide}px`;
+      }
+      if ($(target).hasClass("left")) {
+        position = `+=${100 * slide}px`;
+      }
+      $(".frzTable.default").children(".flexRow").animate(
+        {
+          left: position,
+        },
+        speed
+      );
     },
     widthShow: function (show) {
       $(".frzTable").find(".stickyContainer.left").hide();
@@ -150,19 +108,62 @@ $(function () {
         $(".default").css({ width: `${100 * show}` });
         $(".frzTable")
           .children(".flexRow")
-          .children()
-          .each(function (index, item) {
-            if (index > show - 2) {
-              $(item).addClass("disappear");
-            }
-          });
+          .addClass("absolute")
+          .css({ left: "100px" });
+      }
+    },
+  });
+  $(".frzTable.rel").frzTable({
+    count: {
+      slide: 1,
+      show: 3,
+    },
+    speed: 0.3,
+    whenClick: function (count, target) {
+      let slide = this.count.slide;
+      let show = this.count.show;
+      let speed = this.speed * 1000;
+
+      let biggestIndex = $(".frzTable.rel")
+        .children(".flexRow")
+        .children("div:last")
+        .index();
+
+      //按鈕顯示
+      if (biggestIndex - (count + show - 2) <= 0) {
+        $(".frzTable.rel").find(".stickyContainer.rel-right").hide();
       } else {
-        $(".frzTable")
+        $(".frzTable.rel").find(".stickyContainer.rel-right").show();
+      }
+      if (count >= slide) {
+        $(".frzTable.rel").find(".stickyContainer.rel-left").show();
+      } else {
+        $(".frzTable.rel").find(".stickyContainer.rel-left").hide();
+      }
+      let position;
+      if ($(target).hasClass("rel-right")) {
+        position = `-=${133 * slide}px`;
+      }
+      if ($(target).hasClass("rel-left")) {
+        position = `+=${133 * slide}px`;
+      }
+      $(".frzTable.rel").children(".flexRow").addClass("absolute").animate(
+        {
+          left: position,
+        },
+        speed
+      );
+    },
+    widthShow: function (show) {
+      $(".frzTable.rel").find(".stickyContainer.left").hide();
+      if (innerWidth < 1000) {
+        $(".rel").css({ width: `${133 * show}px` });
+        $(".frzTable.rel")
           .children(".flexRow")
-          .children()
-          .each(function (index, item) {
-            $(item).addClass("appear");
-          });
+          .addClass("absolute")
+          .css({ left: "133px" });
+      } else {
+        $(".rel").css({ width: "" });
       }
     },
   });
