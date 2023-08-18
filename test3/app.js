@@ -68,6 +68,7 @@ $(function () {
     },
     speed: 0.3,
     whenClick: function (count, target) {
+      console.log(count);
       let slide = this.count.slide;
       let show = this.count.show;
       let speed = this.speed * 1000;
@@ -104,12 +105,16 @@ $(function () {
     },
     widthShow: function (show) {
       $(".frzTable").find(".stickyContainer.left").hide();
+      $(".frzTable").find(".stickyContainer.right").show();
       if (innerWidth < 1000) {
         $(".default").css({ width: `${100 * show}` });
         $(".frzTable")
           .children(".flexRow")
           .addClass("absolute")
           .css({ left: "100px" });
+      } else {
+        $(".frzTable.default").children(".flexRow").removeClass("absolute");
+        $(".default").css({ width: "" });
       }
     },
   });
@@ -123,6 +128,7 @@ $(function () {
       let slide = this.count.slide;
       let show = this.count.show;
       let speed = this.speed * 1000;
+      console.log("rel", count);
 
       let biggestIndex = $(".frzTable.rel")
         .children(".flexRow")
@@ -155,7 +161,8 @@ $(function () {
       );
     },
     widthShow: function (show) {
-      $(".frzTable.rel").find(".stickyContainer.left").hide();
+      $(".frzTable.rel").find(".stickyContainer.rel-left").hide();
+      $(".frzTable.rel").find(".stickyContainer.rel-right").show();
       if (innerWidth < 1000) {
         $(".rel").css({ width: `${133 * show}px` });
         $(".frzTable.rel")
@@ -163,6 +170,7 @@ $(function () {
           .addClass("absolute")
           .css({ left: "133px" });
       } else {
+        $(".frzTable.rel").children(".flexRow").removeClass("absolute");
         $(".rel").css({ width: "" });
       }
     },
